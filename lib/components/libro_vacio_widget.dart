@@ -27,11 +27,13 @@ class _LibroVacioWidgetState extends State<LibroVacioWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => LibroVacioModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    _model.dispose();
+    _model.maybeDispose();
 
     super.dispose();
   }

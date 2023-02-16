@@ -37,9 +37,10 @@ class _AnadirLibroWidgetState extends State<AnadirLibroWidget> {
     super.initState();
     _model = createModel(context, () => AnadirLibroModel());
 
-    _model.inputTituloController = TextEditingController();
-    _model.inputAutorController = TextEditingController();
-    _model.inputResumenController = TextEditingController();
+    _model.inputTituloController ??= TextEditingController();
+    _model.inputAutorController ??= TextEditingController();
+    _model.inputResumenController ??= TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -285,9 +286,7 @@ class _AnadirLibroWidgetState extends State<AnadirLibroWidget> {
                                             ),
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryColor,
+                                                color: Color(0x00000000),
                                                 width: 1,
                                               ),
                                               borderRadius:
@@ -361,8 +360,7 @@ class _AnadirLibroWidgetState extends State<AnadirLibroWidget> {
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryColor,
+                                            color: Color(0x00000000),
                                             width: 1,
                                           ),
                                           borderRadius:
@@ -439,8 +437,7 @@ class _AnadirLibroWidgetState extends State<AnadirLibroWidget> {
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryColor,
+                                            color: Color(0x00000000),
                                             width: 1,
                                           ),
                                           borderRadius:

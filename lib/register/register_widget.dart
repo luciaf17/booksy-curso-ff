@@ -27,9 +27,10 @@ class _RegisterWidgetState extends State<RegisterWidget> {
     super.initState();
     _model = createModel(context, () => RegisterModel());
 
-    _model.emailAddressController = TextEditingController();
-    _model.passwordController = TextEditingController();
-    _model.confirmpasswordController = TextEditingController();
+    _model.emailAddressController ??= TextEditingController();
+    _model.passwordController ??= TextEditingController();
+    _model.confirmpasswordController ??= TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -106,7 +107,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Color(0x2ED55555),
+                                      color: Color(0x00000000),
                                       width: 2,
                                     ),
                                     borderRadius: BorderRadius.circular(40),
@@ -170,7 +171,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0x2BD55555),
+                                    color: Color(0x00000000),
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(40),
@@ -244,7 +245,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0x2BD55555),
+                                    color: Color(0x00000000),
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(40),

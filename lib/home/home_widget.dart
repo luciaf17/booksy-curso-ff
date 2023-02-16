@@ -27,7 +27,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
   final _unfocusNode = FocusNode();
 
   final animationsMap = {
-    'containerOnActionTriggerAnimation': AnimationInfo(
+    'containerOnActionTriggerAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onActionTrigger,
       applyInitialState: true,
       effects: [
@@ -36,6 +36,19 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
           delay: 0.ms,
           duration: 600.ms,
           begin: Offset(40, 0),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'containerOnActionTriggerAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onActionTrigger,
+      applyInitialState: true,
+      effects: [
+        MoveEffect(
+          curve: Curves.bounceOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(-40, 0),
           end: Offset(0, 0),
         ),
       ],
@@ -53,6 +66,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -107,10 +122,10 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                           onTap: () async {
                             setDarkModeSetting(context, ThemeMode.dark);
                             if (animationsMap[
-                                    'containerOnActionTriggerAnimation'] !=
+                                    'containerOnActionTriggerAnimation1'] !=
                                 null) {
                               animationsMap[
-                                      'containerOnActionTriggerAnimation']!
+                                      'containerOnActionTriggerAnimation1']!
                                   .controller
                                   .forward(from: 0.0);
                             }
@@ -119,74 +134,80 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                                  .primaryBackground,
                             ),
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(24, 0, 24, 12),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24, 12, 24, 12),
                               child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
+                                  Text(
+                                    'Switch to Dark Mode',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Outfit',
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
                                   Container(
                                     width: 80,
                                     height: 40,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                      color: Color(0xFF1A1F24),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        setDarkModeSetting(
-                                            context, ThemeMode.system);
-                                      },
-                                      child: Stack(
-                                        alignment: AlignmentDirectional(0, 0),
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0.95, 0),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 8, 0),
-                                              child: Icon(
-                                                Icons.nights_stay,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 20,
-                                              ),
+                                    child: Stack(
+                                      alignment: AlignmentDirectional(0, 0),
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(0.95, 0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 8, 0),
+                                            child: Icon(
+                                              Icons.nights_stay,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryColor,
+                                              size: 20,
                                             ),
                                           ),
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(-0.85, 0),
-                                            child: Container(
-                                              width: 26,
-                                              height: 26,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryColor,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 4,
-                                                    color: Color(0x430B0D0F),
-                                                    offset: Offset(0, 2),
-                                                  )
-                                                ],
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                                shape: BoxShape.rectangle,
-                                              ),
-                                            ).animateOnActionTrigger(
-                                              animationsMap[
-                                                  'containerOnActionTriggerAnimation']!,
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.85, 0),
+                                          child: Container(
+                                            width: 26,
+                                            height: 26,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryColor,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  blurRadius: 4,
+                                                  color: Color(0x430B0D0F),
+                                                  offset: Offset(0, 2),
+                                                )
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              shape: BoxShape.rectangle,
                                             ),
+                                          ).animateOnActionTrigger(
+                                            animationsMap[
+                                                'containerOnActionTriggerAnimation1']!,
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
@@ -199,10 +220,10 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                           onTap: () async {
                             setDarkModeSetting(context, ThemeMode.light);
                             if (animationsMap[
-                                    'containerOnActionTriggerAnimation'] !=
+                                    'containerOnActionTriggerAnimation2'] !=
                                 null) {
                               animationsMap[
-                                      'containerOnActionTriggerAnimation']!
+                                      'containerOnActionTriggerAnimation2']!
                                   .controller
                                   .forward(from: 0.0);
                             }
@@ -210,16 +231,83 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                           child: Container(
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                              color: Color(0xFF101213),
                             ),
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   24, 12, 24, 12),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [],
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Switch to Light Mode',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Outfit',
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                  Container(
+                                    width: 80,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF1A1F24),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Stack(
+                                      alignment: AlignmentDirectional(0, 0),
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.9, 0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 2, 0, 0),
+                                            child: Icon(
+                                              Icons.wb_sunny_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryColor,
+                                              size: 24,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(0.9, 0),
+                                          child: Container(
+                                            width: 26,
+                                            height: 26,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryColor,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  blurRadius: 4,
+                                                  color: Color(0x430B0D0F),
+                                                  offset: Offset(0, 2),
+                                                )
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              shape: BoxShape.rectangle,
+                                            ),
+                                          ).animateOnActionTrigger(
+                                            animationsMap[
+                                                'containerOnActionTriggerAnimation2']!,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -228,7 +316,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 20),
+                  padding: EdgeInsetsDirectional.fromSTEB(24, 20, 0, 20),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -237,7 +325,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Holas de Nuevo ',
+                            'Hola de Nuevo ',
                             style: FlutterFlowTheme.of(context).bodyText1,
                           ),
                           Text(
@@ -424,63 +512,77 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                               return Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, 8),
-                                      child: Container(
-                                        width: 160,
-                                        height: 250,
-                                        child: Stack(
-                                          children: [
-                                            Container(
-                                              width: 160,
-                                              height: 250,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 4,
-                                                    color: Color(0x0E000000),
-                                                    offset: Offset(0, 2),
-                                                  )
-                                                ],
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                              ),
-                                            ),
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              child: Image.network(
-                                                listViewBooksRecord.portada!,
+                                child: InkWell(
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'DetalleDelLibro',
+                                      queryParams: {
+                                        'bookId': serializeParam(
+                                          listViewBooksRecord.reference,
+                                          ParamType.DocumentReference,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  },
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 8),
+                                        child: Container(
+                                          width: 160,
+                                          height: 250,
+                                          child: Stack(
+                                            children: [
+                                              Container(
                                                 width: 160,
                                                 height: 250,
-                                                fit: BoxFit.cover,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 4,
+                                                      color: Color(0x0E000000),
+                                                      offset: Offset(0, 2),
+                                                    )
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                child: Image.network(
+                                                  listViewBooksRecord.portada!,
+                                                  width: 160,
+                                                  height: 250,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Text(
-                                      listViewBooksRecord.title!,
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .subtitle1,
-                                    ),
-                                    Text(
-                                      listViewBooksRecord.autor!,
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
-                                    ),
-                                  ],
+                                      Text(
+                                        listViewBooksRecord.title!,
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .subtitle1,
+                                      ),
+                                      Text(
+                                        listViewBooksRecord.autor!,
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               );
                             },
@@ -494,7 +596,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 80),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 40),
                       child: InkWell(
                         onTap: () async {
                           GoRouter.of(context).prepareAuthEvent();

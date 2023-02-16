@@ -88,6 +88,8 @@ class _DetalleDelLibroWidgetState extends State<DetalleDelLibroWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => DetalleDelLibroModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

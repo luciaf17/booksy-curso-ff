@@ -35,7 +35,8 @@ class _ValorarLibroWidgetState extends State<ValorarLibroWidget> {
     super.initState();
     _model = createModel(context, () => ValorarLibroModel());
 
-    _model.textReviewController = TextEditingController();
+    _model.textReviewController ??= TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -153,8 +154,7 @@ class _ValorarLibroWidgetState extends State<ValorarLibroWidget> {
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryColor,
+                                        color: Color(0x00000000),
                                         width: 1,
                                       ),
                                       borderRadius: BorderRadius.circular(8),

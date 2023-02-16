@@ -26,8 +26,9 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.initState();
     _model = createModel(context, () => LoginModel());
 
-    _model.emailAddressController = TextEditingController();
-    _model.passwordController = TextEditingController();
+    _model.emailAddressController ??= TextEditingController();
+    _model.passwordController ??= TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -104,7 +105,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Color(0x2ED55555),
+                                      color: Color(0x00000000),
                                       width: 2,
                                     ),
                                     borderRadius: BorderRadius.circular(40),
@@ -168,7 +169,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0x2BD55555),
+                                    color: Color(0x00000000),
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(40),
