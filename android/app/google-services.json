@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "415119455752",
+    "project_id": "booksy-curso-cdef3",
+    "storage_bucket": "booksy-curso-cdef3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415119455752:android:f2c4b77d6bfe6df80c43bd",
+        "android_client_info": {
+          "package_name": "com.mycompany.booksy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415119455752-pormiblui0ouk65e6f6044ggdtmr873f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxvSXdTL6td84uV_I_7DPVSv2ukmc57Xk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415119455752-pormiblui0ouk65e6f6044ggdtmr873f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "415119455752-61gjtafm75gu0dgcqbh4isqto3gqu4me.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.booksy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
